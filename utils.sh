@@ -74,21 +74,25 @@ function setup_arkbuild32() {
 }
 
 function remove_arkbuild() {
-  sudo umount Arkbuild/proc
-  sudo umount Arkbuild/dev/pts
-  sudo umount Arkbuild/dev
-  sudo umount Arkbuild/sys
-  sudo umount Arkbuild
-  sudo rm -rf Arkbuild
+  for m in proc dev/pts dev sys Arkbuild
+  do
+    if grep -qs "Arkbuild/${m} " /proc/mounts; then
+      sudo umount Arkbuild/${m}
+    fi
+  done
+  [ -d "Arkbuild" ] && sudo rm -rf Arkbuild
+  return 0
 }
 
 function remove_arkbuild32() {
-  sudo umount Arkbuild32/proc
-  sudo umount Arkbuild32/dev/pts 
-  sudo umount Arkbuild32/dev 
-  sudo umount Arkbuild32/sys 
-  sudo umount Arkbuild32
-  sudo rm -rf Arkbuild32
+  for m in proc dev/pts dev sys Arkbuild32
+  do
+    if grep -qs "Arkbuild32/${m} " /proc/mounts; then
+      sudo umount Arkbuild32/${m}
+    fi
+  done
+  [ -d "Arkbuild32" ] && sudo rm -rf Arkbuild32
+  return 0
 }
 
 updateapt="N"
