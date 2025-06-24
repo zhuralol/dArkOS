@@ -1,5 +1,0 @@
-LABEL=ROOTFS / xfs defaults, noatime 0 1
-
-LABEL=BOOT /boot vfat defaults 0 2
-LABEL=EASYROMS /roms exfat defaults,auto,umask=000,uid=1000,gid=1000,noatime 0 0
-/roms/tools /opt/system/Tools none bind
