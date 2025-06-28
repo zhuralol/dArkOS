@@ -1,10 +1,12 @@
 # Game system folders to be created are listed below
+alg
 arcade
 atomiswave
 bios
 cps1
 cps2
 cps3
+daphne
 doom
 dreamcast
 gb

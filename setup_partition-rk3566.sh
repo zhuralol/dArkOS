@@ -4,8 +4,14 @@
 ROOT_FILESYSTEM_FORMAT="btrfs"
 if [ "$ROOT_FILESYSTEM_FORMAT" == "xfs" ] || [ "$ROOT_FILESYSTEM_FORMAT" == "btrfs" ]; then
   ROOT_FILESYSTEM_FORMAT_PARAMETERS="-f -L ROOTFS"
+  if [ "$ROOT_FILESYSTEM_FORMAT" != "btrfs" ]; then
+    ROOT_FILESYSTEM_MOUNT_OPTIONS="defaults,noatime"
+  else
+    ROOT_FILESYSTEM_MOUNT_OPTIONS="defaults,noatime,compress=zstd"
+  fi
 elif [[ "$ROOT_FILESYSTEM_FORMAT" == *"ext"* ]]; then
   ROOT_FILESYSTEM_FORMAT_PARAMETERS="-F -L ROOTFS"
+  ROOT_FILESYSTEM_MOUNT_OPTIONS="defaults,noatime"
 fi
 DISK="ArkOS_RG353M.img"
 IMAGE_SIZE=7.5G
@@ -70,7 +76,7 @@ sudo mkfs.vfat -n ROMS "${LOOP_DEV}p5"
 dd if=/dev/zero of="${FILESYSTEM}" bs=1M count=0 seek="${BUILD_SIZE}" conv=fsync
 sudo mkfs.${ROOT_FILESYSTEM_FORMAT} ${ROOT_FILESYSTEM_FORMAT_PARAMETERS} "${FILESYSTEM}"
 mkdir -p Arkbuild/
-sudo mount -t ${ROOT_FILESYSTEM_FORMAT} -o loop ${FILESYSTEM} Arkbuild/
+sudo mount -t ${ROOT_FILESYSTEM_FORMAT} -o ${ROOT_FILESYSTEM_MOUNT_OPTIONS},loop ${FILESYSTEM} Arkbuild/
 
 #sudo losetup -d $LOOP_DEV
 #echo "✅ ArkOS-like image created: $DISK"

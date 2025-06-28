@@ -2,11 +2,11 @@
 
 # Cleanup to reduce image size and remove build remnants
 echo -e "Cleaning up filesystem"
-sudo chroot Arkbuild/ bash -c "rm -rf /home/ark/EmulationStation-fcamod"
-sudo chroot Arkbuild/ bash -c "rm -rf /home/ark/libgo2"
-sudo chroot Arkbuild/ bash -c "rm -rf /home/ark/linux-rga"
-sudo chroot Arkbuild/ bash -c "rm -rf /home/ark/${CHIPSET}_core_builds"
-sudo chroot Arkbuild/ bash -c "apt-get remove -y autotools-dev \
+call_chroot "rm -rf /home/ark/EmulationStation-fcamod"
+call_chroot "rm -rf /home/ark/libgo2"
+call_chroot "rm -rf /home/ark/linux-rga"
+call_chroot "rm -rf /home/ark/${CHIPSET}_core_builds"
+call_chroot "apt-get remove -y autotools-dev \
   build-essential \
   ccache \
   clang \
@@ -55,14 +55,15 @@ sudo chroot Arkbuild/ bash -c "apt-get remove -y autotools-dev \
   libx11-dev \
   libx11-xcb1 \
   libxcb-dri2-0 \
+  libzip-dev \
   ninja-build \
   pkg-config \
   premake4 \
   rapidjson-dev \
   zlib1g-dev"
 
-sudo chroot Arkbuild/ apt-get -y autoremove
-sudo chroot Arkbuild/ apt-get clean
+call_chroot apt-get -y autoremove
+call_chroot apt-get clean
 
 # Ensure additional needed packages are still in place
 while read NEEDED_PACKAGE; do
@@ -96,11 +97,11 @@ do
 done
 cd ../../../../
 
-sudo chroot Arkbuild/ bash -c "ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0"
-sudo chroot Arkbuild/ bash -c "ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.${extension} /usr/lib/aarch64-linux-gnu/libSDL2.so"
-sudo chroot Arkbuild/ bash -c "ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0"
-sudo chroot Arkbuild/ bash -c "ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.${extension} /usr/lib/arm-linux-gnueabihf/libSDL2.so"
-sudo chroot Arkbuild/ ldconfig
+call_chroot "ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2.so /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0"
+call_chroot "ln -sfv /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so.0.${extension} /usr/lib/aarch64-linux-gnu/libSDL2.so"
+call_chroot "ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2.so /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0"
+call_chroot "ln -sfv /usr/lib/arm-linux-gnueabihf/libSDL2-2.0.so.0.${extension} /usr/lib/arm-linux-gnueabihf/libSDL2.so"
+call_chroot ldconfig
 
 sudo umount -l Arkbuild/home/ark/Arkbuild_ccache
 sudo rm -rf Arkbuild/home/ark/Arkbuild_ccache

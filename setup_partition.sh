@@ -5,8 +5,14 @@ echo -e "Creating partitions...\n\n"
 ROOT_FILESYSTEM_FORMAT="btrfs"
 if [ "$ROOT_FILESYSTEM_FORMAT" == "xfs" ] || [ "$ROOT_FILESYSTEM_FORMAT" == "btrfs" ]; then
   ROOT_FILESYSTEM_FORMAT_PARAMETERS="-f -L ROOTFS"
+  if [ "$ROOT_FILESYSTEM_FORMAT" != "btrfs" ]; then
+    ROOT_FILESYSTEM_MOUNT_OPTIONS="defaults,noatime"
+  else
+    ROOT_FILESYSTEM_MOUNT_OPTIONS="defaults,noatime,compress=zstd"
+  fi
 elif [[ "$ROOT_FILESYSTEM_FORMAT" == *"ext"* ]]; then
   ROOT_FILESYSTEM_FORMAT_PARAMETERS="-F -L ROOTFS"
+  ROOT_FILESYSTEM_MOUNT_OPTIONS="defaults,noatime"
 fi
 SYSTEM_SIZE=100      # FAT32 boot partition size in MB
 STORAGE_SIZE=7168    # Root filesystem size in MB

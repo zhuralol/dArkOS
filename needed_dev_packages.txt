@@ -25,5 +25,6 @@ libsoxr-dev
 libvlc-dev
 libvlccore-dev
 libvpx-dev
+libzip-dev
 rapidjson-dev
 

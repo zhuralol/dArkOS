@@ -75,7 +75,7 @@ sudo chmod 777 Arkbuild/usr/local/bin/killer_daemon.py
 
 #Generate fstab to be used after EASYROMS expansion
 cat <<EOF | sudo tee ${mountpoint}/fstab.exfat
-LABEL=ROOTFS / ${ROOT_FILESYSTEM_FORMAT} defaults,noatime 0 0
+LABEL=ROOTFS / ${ROOT_FILESYSTEM_FORMAT} ${ROOT_FILESYSTEM_MOUNT_OPTIONS} 0 0
 
 LABEL=BOOT /boot vfat defaults 0 2
 LABEL=EASYROMS /roms exfat defaults,auto,umask=000,uid=1000,gid=1000,noatime 0 0

@@ -15,10 +15,10 @@ sudo cp -Ra Arkbuild/home/ark/${CHIPSET}_core_builds/hypseus-singe/fonts/ Arkbui
 sudo cp -Ra Arkbuild/home/ark/${CHIPSET}_core_builds/hypseus-singe/midi/ Arkbuild/opt/hypseus-singe/
 sudo cp -Ra Arkbuild/home/ark/${CHIPSET}_core_builds/hypseus-singe/pics/ Arkbuild/opt/hypseus-singe/
 sudo cp -Ra Arkbuild/home/ark/${CHIPSET}_core_builds/hypseus-singe/sound/ Arkbuild/opt/hypseus-singe/
-sudo cp -Ra Arkbuild/home/ark/${CHIPSET}_core_builds/hypseus-singe/LICENSE/ Arkbuild/opt/hypseus-singe/
+sudo cp -Ra Arkbuild/home/ark/${CHIPSET}_core_builds/hypseus-singe/LICENSE Arkbuild/opt/hypseus-singe/
 sudo cp -a Arkbuild/home/ark/${CHIPSET}_core_builds/hypseus-singe/build/hypseus Arkbuild/opt/hypseus-singe/hypseus-singe
-sudo cp hypseus-singe/configs/hypinput_gamepad.ini.${UNIT} Arkbuild/opt/hypseus-singe/hypseus-singe/hypinput_gamepad.ini
-sudo cp hypseus-singe/configs/gamecontrollerdb.txt Arkbuild/opt/hypseus-singe/hypseus-singe/gamecontrollerdb.txt
+sudo cp hypseus-singe/configs/hypinput_gamepad.ini.${UNIT} Arkbuild/opt/hypseus-singe/hypinput_gamepad.ini
+sudo cp hypseus-singe/configs/gamecontrollerdb.txt Arkbuild/opt/hypseus-singe/gamecontrollerdb.txt
 call_chroot "chown -R ark:ark /opt/"
 sudo cp hypseus-singe/singe.sh Arkbuild/usr/local/bin/singe.sh
 sudo cp hypseus-singe/daphne.sh Arkbuild/usr/local/bin/daphne.sh
