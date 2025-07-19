@@ -56,6 +56,7 @@ source ./build_gptokeyb.sh
 source ./build_image-viewer.sh
 source ./build_emulationstation.sh
 source ./build_linapple.sh
+source ./build_piemu.sh
 source ./build_ti99sim.sh
 source ./build_openmsxsa.sh
 source ./build_drastic.sh

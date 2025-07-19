@@ -16,5 +16,5 @@ call_chroot "cd /home/ark &&
 
 sudo cp -R mvem/controls/ Arkbuild/opt/mvem/
 call_chroot "chown -R ark:ark /opt"
-sudo cp scripts/mvem.sh Arkbuild/usr/local/bin/
+sudo cp mvem/scripts/mvem.sh Arkbuild/usr/local/bin/
 sudo chmod 777 Arkbuild/usr/local/bin/mvem.sh

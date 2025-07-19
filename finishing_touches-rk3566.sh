@@ -116,7 +116,6 @@ sudo cp dArkOS_Tools/*.sh Arkbuild/opt/system/
 sudo cp dArkOS_Tools/${CHIPSET}/*.sh Arkbuild/opt/system/Advanced/
 sudo cp dArkOS_Tools/Advanced/*.sh Arkbuild/opt/system/Advanced/
 sudo chroot Arkbuild/ bash -c "chown -R ark:ark /opt"
-sudo mv Arkbuild/opt/system/Advanced/Bluetooth.sh Arkbuild/opt/system/
 sudo chmod -R 777 Arkbuild/opt/system/
 
 # Copy performance scripts
