@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Build and install DinguxCommander
+if [ "$UNIT" == "rgb10" ]; then
+  BRANCH="master"
+  DEVICE_CONFIG="rk3326"
+elif [[ "$UNIT" == *"353"* ]]; then
+  BRANCH="rg351mp"
+  DEVICE_CONFIG="rk3566"
+fi
+call_chroot "cd /home/ark &&
+  git clone --recursive https://github.com/christianhaitian/rs97-commander-sdl2.git -b ${BRANCH} &&
+  cd rs97-commander-sdl2 &&
+  make -j$(nproc) &&
+  strip DinguxCommander
+  "
+sudo mkdir -p Arkbuild/opt/dingux
+sudo cp Arkbuild/home/ark/rs97-commander-sdl2/DinguxCommander Arkbuild/opt/dingux/
+sudo chmod 777 Arkbuild/opt/dingux/DinguxCommander
+sudo cp -R Arkbuild/home/ark/rs97-commander-sdl2/res/ Arkbuild/opt/dingux/
+if [[ -f "filecommmander/configs/oshgamepad.cfg.${DEVICE_CONFIG}" ]]; then
+  sudo cp filecommmander/configs/oshgamepad.cfg.${DEVICE_CONFIG} Arkbuild/opt/dingux/oshgamepad.cfg
+fi
+call_chroot "chown -R ark:ark /opt"
+sudo rm -rf Arkbuild/home/ark/rs97-commander-sdl2

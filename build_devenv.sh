@@ -173,7 +173,6 @@ sudo chroot ${CHROOT_DIR}/ bash -c "cd /home/ark &&
   mkdir -p /usr/include/go2 &&
   cp -L src/*.h /usr/include/go2/
   "
-) 2>&1 | tee -a builddevenv.log
 
 echo "Development environment build completed. It can be entered by issuing command sudo chroot ${CHROOT_DIR}."
-
+) 2>&1 | tee -a builddevenv.log
