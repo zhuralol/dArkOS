@@ -12,7 +12,7 @@ sudo mkdir -p Arkbuild/home/ark/.config/retroarch/filters/video
 sudo mkdir -p Arkbuild/home/ark/.config/retroarch/filters/audio
 sudo mkdir -p Arkbuild/home/ark/.config/retroarch/autoconfig/udev
 sudo mkdir -p Arkbuild/opt/cmds
-if [ "$CHIPSET" == "rk3326" ]; then
+if [ "$UNIT" == "rgb10" ] || [ "$UNIT" == "rk2020" ]; then
   sudo cp -a Arkbuild/home/ark/${CHIPSET}_core_builds/retroarch64/retroarch.${CHIPSET}.rot Arkbuild/opt/retroarch/bin/retroarch
 else
   sudo cp -a Arkbuild/home/ark/${CHIPSET}_core_builds/retroarch64/retroarch Arkbuild/opt/retroarch/bin/retroarch
@@ -90,7 +90,7 @@ call_chroot32 "cd /home/ark &&
 sudo mkdir -p Arkbuild/home/ark/.config/retroarch32/filters/video
 sudo mkdir -p Arkbuild/home/ark/.config/retroarch32/filters/audio
 sudo mkdir -p Arkbuild/home/ark/.config/retroarch32/autoconfig/udev
-if [ "$CHIPSET" == "rk3326" ]; then
+if [ "$UNIT" == "rgb10" ] || [ "$UNIT" == "rk2020" ]; then
   sudo cp -a Arkbuild32/home/ark/${CHIPSET}_core_builds/retroarch32/retroarch32.${CHIPSET}.rot Arkbuild/opt/retroarch/bin/retroarch32
 else
   sudo cp -a Arkbuild32/home/ark/${CHIPSET}_core_builds/retroarch32/retroarch32 Arkbuild/opt/retroarch/bin/retroarch32

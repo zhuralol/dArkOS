@@ -1,12 +1,24 @@
 #!/bin/bash
 
 # Build and install custom kernel from christianhaitian/linux
-KERNEL_SRC=odroidgoA-4.4.y
+if [ "$UNIT" == "rgb10" ] || [ "$UNIT" == "rk2020" ]; then
+  KERNEL_SRC="odroidgoA-4.4.y"
+  DEF_CONFIG="odroidgoa_tweaked_defconfig"
+  if [ "$UNIT" == "rgb10" ]; then
+    KERNEL_DTB="${CHIPSET}-odroidgo2-linux-v11.dtb"
+  else
+    KERNEL_DTB="${CHIPSET}-odroidgo2-linux.dtb"
+  fi
+else
+  KERNEL_SRC="rg351"
+  DEF_CONFIG="rg351p_tweaked_defconfig"
+  KERNEL_DTB="${CHIPSET}-${UNIT}-linux.dtb"
+fi
 if [ ! -d "$KERNEL_SRC" ]; then
-  git clone --recursive --depth=1 https://github.com/christianhaitian/linux.git $KERNEL_SRC
+  git clone --recursive --depth=1 https://github.com/christianhaitian/linux.git -b $KERNEL_SRC $KERNEL_SRC
 fi
 cd $KERNEL_SRC
-make ARCH=arm64 odroidgoa_tweaked_defconfig
+make ARCH=arm64 ${DEF_CONFIG}
 CFLAGS=-Wno-deprecated-declarations make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules_prepare
 CFLAGS=-Wno-deprecated-declarations make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image dtbs modules
 verify_action
@@ -28,7 +40,7 @@ sudo mount ${LOOP_BOOT} ${mountpoint}
 KERNEL_VERSION=$(basename $(ls Arkbuild/lib/modules))
 sudo cp $KERNEL_SRC/.config Arkbuild/boot/config-${KERNEL_VERSION}
 sudo cp $KERNEL_SRC/arch/arm64/boot/Image ${mountpoint}/
-sudo cp $KERNEL_SRC/arch/arm64/boot/dts/rockchip/${CHIPSET}-odroidgo2-linux-v11.dtb ${mountpoint}/
+sudo cp $KERNEL_SRC/arch/arm64/boot/dts/rockchip/${KERNEL_DTB} ${mountpoint}/
 
 # Create uInitrd from generated initramfs
 sudo cp /usr/bin/qemu-aarch64-static Arkbuild/usr/bin/

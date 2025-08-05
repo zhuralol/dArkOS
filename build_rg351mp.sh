@@ -19,7 +19,7 @@ fi
 (
 # Set chipset in environment variable
 export CHIPSET=rk3326
-export UNIT=rgb10
+export UNIT=rg351mp
 
 # Load shared utilities (if any)
 source ./utils.sh
@@ -71,5 +71,5 @@ source ./clean_mounts.sh
 source ./create_image.sh
 ) 2>&1 | tee -a build.log
 
-echo "RGB10 build completed. Final image is ready."
+echo "RG351MP build completed. Final image is ready."
 

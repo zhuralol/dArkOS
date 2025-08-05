@@ -32,10 +32,6 @@ DISK_SIZE=$(( DISK_START_PADDING + SYSTEM_SIZE + STORAGE_SIZE + ROM_PART_SIZE + 
 FILESYSTEM="ArkOS_File_System.img"
 
 # Create filesystem image
-if [ -f "ArkOS_RGB10.img" ]; then
-  sudo rm -f ArkOS_RGB10.img
-fi
-
 dd if=/dev/zero of="${FILESYSTEM}" bs=1M count=0 seek="${BUILD_SIZE}" conv=fsync
 sudo mkfs.${ROOT_FILESYSTEM_FORMAT} ${ROOT_FILESYSTEM_FORMAT_PARAMETERS} "${FILESYSTEM}"
 mkdir -p Arkbuild/

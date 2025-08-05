@@ -8,13 +8,24 @@ fi
 echo "export devid=$(printenv DEV_ID)" | sudo tee Arkbuild/home/ark/ES_VARIABLES.txt
 echo  "export devpass=$(printenv DEV_PASS)" | sudo tee -a Arkbuild/home/ark/ES_VARIABLES.txt
 echo "export apikey=$(printenv TGDB_APIKEY)" | sudo tee -a Arkbuild/home/ark/ES_VARIABLES.txt
-echo "export softname=\"dArkOS-RGB10\"" | sudo tee -a Arkbuild/home/ark/ES_VARIABLES.txt
+if [[ "$UNIT" == *"353"* ]] || [[ "$UNIT" == *"503"* ]]; then
+  NAME="RG${UNIT}"
+  ES_BRANCH="503noTTS"
+elif [[ "$UNIT" == "rgb10" ]] || [[ "$UNIT" == "rk2020" ]]; then
+  NAME="${UNIT}"
+  ES_BRANCH="master"
+else
+  NAME="${UNIT}"
+  ES_BRANCH="351v"
+fi
+NAME=`echo ${NAME} | tr '[:lower:]' '[:upper:]'`
+echo "export softname=\"dArkOS-${NAME}\"" | sudo tee -a Arkbuild/home/ark/ES_VARIABLES.txt
 
 call_chroot "apt-get -y update && eatmydata apt-get -y install libfreeimage3 fonts-droid-fallback libfreetype6 curl vlc-bin libsdl2-mixer-2.0-0"
 call_chroot "cd /home/ark &&
   source ES_VARIABLES.txt &&
   rm ES_VARIABLES.txt &&
-  git clone --recursive --depth=1 https://github.com/christianhaitian/EmulationStation-fcamod -b master &&
+  git clone --recursive --depth=1 https://github.com/christianhaitian/EmulationStation-fcamod -b ${ES_BRANCH} &&
   cd EmulationStation-fcamod &&
   git submodule update --init &&
   for f in \$(find . -type f \( -name '*.cpp' -o -name '*.h' \) -exec grep -L '<string>' {} \;); do
