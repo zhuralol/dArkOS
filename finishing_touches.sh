@@ -57,6 +57,7 @@ echo -e "# This host address\n127.0.1.1\t${NAME}" | sudo tee -a Arkbuild/etc/hos
 sudo cp audio/.asoundrc Arkbuild/home/ark/.asoundrc
 sudo cp audio/.asoundrcbak Arkbuild/home/ark/.asoundrcbak
 sudo chroot Arkbuild/ bash -c "chown ark:ark /home/ark/.asoundrc*"
+sudo chroot Arkbuild/ bash -c "ln -sfv /home/ark/.asoundrc /etc/asound.conf"
 
 # Sleep script
 sudo mkdir -p Arkbuild/usr/lib/systemd/system-sleep
