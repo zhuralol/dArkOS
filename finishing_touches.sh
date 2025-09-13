@@ -235,7 +235,8 @@ sudo cp audio/asound.state.${CHIPSET} Arkbuild/var/local/asound.state
 echo "export SDL_VIDEO_EGL_DRIVER=libEGL.so" | sudo tee Arkbuild/etc/profile.d/SDL_VIDEO.sh
 
 # Set device name 
-echo "$NAME" | sudo tee Arkbuild/home/ark/.config/.DEVICE
+dNAME=`echo $NAME | tr '[:lower:]' '[:upper:]'`
+echo "$dNAME" | sudo tee Arkbuild/home/ark/.config/.DEVICE
 
 # Configure default samba share setup
 cat <<EOF | sudo tee -a Arkbuild/etc/samba/smb.conf
