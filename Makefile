@@ -20,48 +20,56 @@ all:
 g350:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
 	$(info debian building caching enabled? ${ENABLE_CACHE})
+	$(info adding armhf 32bit userspace? ${BUILD_ARMHF})
 	@sleep 5
 	./build_g350.sh
 
 rgb10:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
 	$(info debian building caching enabled? ${ENABLE_CACHE})
+	$(info adding armhf 32bit userspace? ${BUILD_ARMHF})
 	@sleep 5
 	./build_rgb10.sh
 
 rgb20pro:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
 	$(info debian building caching enabled? ${ENABLE_CACHE})
+	$(info adding armhf 32bit userspace? ${BUILD_ARMHF})
 	@sleep 5
 	./build_rgb20pro.sh
 
 rgb30:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
 	$(info debian building caching enabled? ${ENABLE_CACHE})
+	$(info adding armhf 32bit userspace? ${BUILD_ARMHF})
 	@sleep 5
 	./build_rgb30.sh
 
 rg351mp:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
 	$(info debian building caching enabled? ${ENABLE_CACHE})
+	$(info adding armhf 32bit userspace? ${BUILD_ARMHF})
 	@sleep 5
 	./build_rg351mp.sh
 
 rg353m:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
 	$(info debian building caching enabled? ${ENABLE_CACHE})
+	$(info adding armhf 32bit userspace? ${BUILD_ARMHF})
 	@sleep 5
 	./build_rg353m.sh
 
 rg353v:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
 	$(info debian building caching enabled? ${ENABLE_CACHE})
+	$(info adding armhf 32bit userspace? ${BUILD_ARMHF})
 	@sleep 5
 	./build_rg353v.sh
 
 rg503:
 	$(info dArkOS will be built using the $(DEBIAN_CODE_NAME) release of Debian.)
 	$(info debian building caching enabled? ${ENABLE_CACHE})
+	$(info adding armhf 32bit userspace? ${BUILD_ARMHF})
 	@sleep 5
 	./build_rg503.sh
 
