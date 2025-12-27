@@ -76,6 +76,8 @@ systemd-timesyncd
 tar
 unzip
 vlc-bin
+vlc-data
+vlc-plugin-base
 wget
 xfsprogs
 xxd
