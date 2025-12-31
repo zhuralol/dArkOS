@@ -52,6 +52,7 @@ source ./build_scummvmsa.sh
 source ./build_fake08.sh
 source ./build_xroar.sh
 source ./build_mvem.sh
+source ./build_bigpemu.sh
 source ./build_ogage.sh
 source ./build_ogacontrols.sh
 source ./build_351files.sh
