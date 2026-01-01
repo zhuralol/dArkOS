@@ -20,11 +20,11 @@ else
 		  cd build &&
 		  cmake .. -DODROID=1 -DNOX11=1 -DNOEGL=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo; make -j$(nproc) &&
 		  strip ../lib/* &&
-		  mkdir -p /opt/bigpemu/
+		  mkdir -p /opt/bigpemu/ &&
 		  cp ../lib/libGL.so.1 /opt/bigpemu/ &&
 		  cd /opt/bigpemu &&
 		  ln -sf libGL.so.1 libOpenGL.so &&
-		  ln -sf libOpenGL.so libOpenGL.so.0 &&
+		  ln -sf libOpenGL.so libOpenGL.so.0
 		  "
 	if [ -f "Arkbuild_package_cache/${CHIPSET}/bigpemu.tar.gz" ]; then
 	  sudo rm -f Arkbuild_package_cache/${CHIPSET}/bigpemu.tar.gz
