@@ -28,8 +28,8 @@ cd u-boot-${CHIPSET}
 dd if="sd_fuse/idbloader.img" of="../${DISK}" bs=512 seek=64 conv=sync,noerror,notrunc
 dd if="sd_fuse/uboot.img" of="../${DISK}" bs=512 seek=16384 conv=sync,noerror,notrunc
 dd if="sd_fuse/trust.img" of="../${DISK}" bs=512 seek=24576 conv=sync,noerror,notrunc
-if [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ]; then
-  cp arch/arm/dts/rg351mp-uboot.dtb /tmp/
+if [ "$UNIT" == "rg351mp" ] || [ "$UNIT" == "g350" ] || [ "$UNIT" == "a10mini" ]; then
+  cp arch/arm/dts/${UNIT}-uboot.dtb /tmp/
 fi
 cd ..
 rm -rf u-boot-${CHIPSET}

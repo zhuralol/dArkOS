@@ -7,6 +7,8 @@ elif [ "$UNIT" == "g350" ]; then
   branch="g350"
 elif [ "$UNIT" == "rgb10" ]; then
   branch="master"
+elif [ "$UNIT" == "a10mini" ]; then
+  branch="a10mini"
 elif [ "$UNIT" == "rk2020" ]; then
   branch="rk2020"
 elif [ "$UNIT" == "rg351mp" ]; then
