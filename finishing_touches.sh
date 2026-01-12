@@ -198,6 +198,11 @@ echo -e "Generating 20-usb-alsa.rules udev for usb dac support"
 echo -e "KERNEL==\"controlC[0-9]*\", DRIVERS==\"usb\", SYMLINK=\"snd/controlC7\"" | sudo tee Arkbuild/etc/udev/rules.d/20-usb-alsa.rules
 sudo chroot Arkbuild/ bash -c "(crontab -l 2>/dev/null; echo \"@reboot /usr/local/bin/checknswitchforusbdac.sh &\") | crontab -"
 
+# Fix LEDs on A10 Mini to default to the nice dim blue light while powered on
+if [[ "$UNIT" == "a10mini" ]]; then
+  sudo chroot Arkbuild/ bash -c "(crontab -l 2>/dev/null; echo \"@reboot /usr/local/bin/fix_power_led &\") | crontab -"
+fi
+
 # Disable requirement for sudo for setting niceness
 echo "ark              -       nice            -20" | sudo tee -a Arkbuild/etc/security/limits.conf
 
@@ -246,7 +251,7 @@ fi
 sudo chroot Arkbuild/ bash -c "systemctl set-default multi-user.target"
 if [[ "$UNIT" == "rgb10" ]]; then
   sudo cp device/rgb10/* Arkbuild/usr/local/bin/
-elif [[ "$UNIT" == "rg351mp" ]] || [[ "$UNIT" == "g350" ]]; then
+elif [[ "$UNIT" == "rg351mp" ]] || [[ "$UNIT" == "g350" ]] || [[ "$UNIT" == "a10mini" ]]; then
   sudo cp device/rg351mp/*.sh Arkbuild/usr/local/bin/
   sudo cp device/rg351mp/*.py Arkbuild/usr/local/bin/
   sudo cp device/rg351mp/*.green Arkbuild/usr/local/bin/
