@@ -103,9 +103,10 @@ sudo find Arkbuild/home/ark/.config/retroarch/assets/ -maxdepth 1 ! -name assets
                                                                   ! -name xmb \
                                                                   ! -name COPYING -type d,f -not -path '.' -exec rm -rf {} +
 # Download and add retroarch shaders
-sudo mkdir -p Arkbuild/home/ark/.config/retroarch/shaders/shaders_glsl/Sharp-Shimmerless
+sudo mkdir -p Arkbuild/home/ark/.config/retroarch/shaders/shaders_glsl
 sudo git clone --depth=1 https://github.com/libretro/glsl-shaders.git Arkbuild/home/ark/.config/retroarch/shaders/shaders_glsl/
 sudo rm -f Arkbuild/home/ark/.config/retroarch/shaders/shaders_glsl/{configure,Makefile}
+sudo mkdir -p Arkbuild/home/ark/.config/retroarch/shaders/shaders_glsl/Sharp-Shimmerless
 sudo git clone --depth=1 https://github.com/Woohyun-Kang/Sharp-Shimmerless-Shader.git Arkbuild/home/ark/.config/retroarch/shaders/shaders_glsl/Sharp-Shimmerless/
 sudo rm -rf Arkbuild/home/ark/.config/retroarch/shaders/shaders_glsl/Sharp-Shimmerless/shaders_slang/
 sudo mv Arkbuild/home/ark/.config/retroarch/shaders/shaders_glsl/Sharp-Shimmerless/shaders_glsl/* Arkbuild/home/ark/.config/retroarch/shaders/shaders_glsl/Sharp-Shimmerless/
@@ -285,9 +286,10 @@ if [[ "${BUILD_ARMHF}" == "y" ]]; then
 																	  ! -name COPYING -type d,f -not -path '.' -exec rm -rf {} +
 
 	# Download and add retroarch shaders
-	sudo mkdir -p Arkbuild/home/ark/.config/retroarch32/shaders/shaders_glsl/Sharp-Shimmerless
+	sudo mkdir -p Arkbuild/home/ark/.config/retroarch32/shaders/shaders_glsl
 	sudo git clone --depth=1 https://github.com/libretro/glsl-shaders.git Arkbuild/home/ark/.config/retroarch32/shaders/shaders_glsl/
 	sudo rm -f Arkbuild/home/ark/.config/retroarch32/shaders/shaders_glsl/{configure,Makefile}
+	sudo mkdir -p Arkbuild/home/ark/.config/retroarch32/shaders/shaders_glsl/Sharp-Shimmerless
 	sudo git clone --depth=1 https://github.com/Woohyun-Kang/Sharp-Shimmerless-Shader.git Arkbuild/home/ark/.config/retroarch32/shaders/shaders_glsl/Sharp-Shimmerless/
 	sudo rm -rf Arkbuild/home/ark/.config/retroarch32/shaders/shaders_glsl/Sharp-Shimmerless/shaders_slang/
 	sudo mv Arkbuild/home/ark/.config/retroarch32/shaders/shaders_glsl/Sharp-Shimmerless/shaders_glsl/* Arkbuild/home/ark/.config/retroarch32/shaders/shaders_glsl/Sharp-Shimmerless/
