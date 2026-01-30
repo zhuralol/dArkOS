@@ -256,6 +256,9 @@ sudo cp scripts/processcheck.sh Arkbuild/usr/local/bin/
 sudo cp scripts/autosuspend.service Arkbuild/etc/systemd/system/
 sudo chroot Arkbuild/ bash -c "pip install --break-system-packages --root-user-action ignore inputs"
 sudo chroot Arkbuild/ bash -c "systemctl disable autosuspend"
+sudo cp scripts/rk3566/shutdowntasks.service Arkbuild/etc/systemd/system/
+sudo chroot Arkbuild/ bash -c "(crontab -l 2>/dev/null; echo \"@reboot /usr/local/bin/panel_set.sh RestoreSettings &\") | crontab -"
+sudo chroot Arkbuild/ bash -c "systemctl enable shutdowntasks"
 sudo cp scripts/keystroke.py Arkbuild/usr/local/bin/
 sudo cp scripts/b2.sh Arkbuild/usr/local/bin/
 sudo cp scripts/freej2me.sh Arkbuild/usr/local/bin/
