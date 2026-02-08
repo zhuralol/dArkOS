@@ -5,7 +5,7 @@ if [ -f "Arkbuild_package_cache/${CHIPSET}/bluealsa.tar.gz" ]; then
     sudo tar -xvzpf Arkbuild_package_cache/${CHIPSET}/bluealsa.tar.gz
 else
 	call_chroot "apt update -y &&
-	  apt install -y automake bluez libbluetooth-dev libfdk-aac-dev libldacbt-abr-dev libldacbt-enc-dev libsbc-dev libdbus-1-dev libglib2.0-dev libopenaptx-dev libsbc-dev libspa-0.2-bluetooth python3-docutils &&
+	  apt install -y automake bluez libbluetooth-dev libfdk-aac-dev libldacbt-abr-dev libldacbt-enc-dev libsbc-dev libdbus-1-dev libglib2.0-dev libopenaptx-dev libsbc-dev libspa-0.2-bluetooth pkg-config python3-docutils &&
 	  cd /usr/bin &&
 	  wget -t 3 -T 60 --no-check-certificate https://github.com/christianhaitian/RG353VKernel/raw/refs/heads/main/wifibt/rtk_hciattach &&
 	  chmod 777 rtk_hciattach &&
@@ -21,7 +21,7 @@ else
 	  mkdir build &&
 	  cd build &&
 	  ../configure --enable-aptx --enable-aptx-hd --with-libopenaptx --enable-aac --enable-ldac --enable-upower --enable-a2dpconf --enable-systemd &&
-	  make CFLAGS="-Ofast -s" -j$(nproc) &&
+	  make CFLAGS=\"-Ofast -s\" -j$(nproc) &&
 	  make install &&
 	  apt remove -y libbluetooth-dev libsbc-dev libfdk-aac-dev libldacbt-abr-dev libldacbt-enc-dev libsbc-dev libdbus-1-dev libglib2.0-dev libopenaptx-dev
 	  "

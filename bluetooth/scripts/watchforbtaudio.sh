@@ -26,7 +26,7 @@ until false; do
 		fi
 		syncdevice=$(bluealsactl --quiet list-pcms | grep -o -E '([[:xdigit:]]{2}_){5}[[:xdigit:]]{2}' | sed '/_/s//:/g')
 		alsaloop -C hw:Loopback,1,0 -P bluealsa:DEV=${syncdevice},PROFILE=a2dp --sync=none -c 2 -r 48000 -f s16_le -t 100000 &
-		cp -f ~/.asoundrcbt ~/.asoundrc
+		cp -f /home/ark/.asoundrcbt /home/ark/.asoundrc
 		if [[ -z $(pgrep -x finish.sh) ]] && [[ -z $(pgrep -x pause.sh) ]]; then
 		  sudo systemctl restart ogage
 		fi
@@ -41,7 +41,7 @@ until false; do
 		fi
 	else
 		pkill alsaloop
-		cp -f ~/.asoundrcbak ~/.asoundrc
+		cp -f /home/ark/.asoundrcbak /home/ark/.asoundrc
 		if [[ -z $(pgrep -x finish.sh) ]] && [[ -z $(pgrep -x pause.sh) ]]; then
 		  sudo systemctl restart ogage
 		fi
